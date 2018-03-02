@@ -8,7 +8,7 @@ export class WeeklyTable extends Component{
       <tr>
         <td>{data.weekday}</td>
         <td>{data.temp}</td>
-        <td>{data.rain}</td>
+        <td>{data.rain + "%"}</td>
         <td>{data.cloud_c}</td>
       </tr>
     )
@@ -16,7 +16,6 @@ export class WeeklyTable extends Component{
 
   render()
   {
-    console.log(this.props.daily);
       const content = this.props.daily.map((data) => this.returnEachRow(data));
       return (
         <table>

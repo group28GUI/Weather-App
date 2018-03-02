@@ -10,12 +10,11 @@ export class PictureText extends Component
 	}
 
   render() {
-
     return (
       <div>
-        <img src = {this.props.img} />
-        <div>{this.props.text}</div>
-        <div> {this.props.value} </div>
+        <img src = {this.props.data.image} />
+        <div>{this.props.data.text}</div>
+				<div> {this.props.data.value} {this.props.data.measure}</div>
       </div>
     );
   }

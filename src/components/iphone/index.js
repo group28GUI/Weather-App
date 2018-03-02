@@ -11,6 +11,10 @@ import style from './style';
 
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
+	constructor(props){
+		super(props);
+	}
+
 	render()
 	{
 		return (
@@ -22,9 +26,9 @@ export default class Iphone extends Component {
 				<BrowserRouter>
 				<div>
 					<div className="content">
-					      <Route exact path="/" component = {MainPage}/>
+					      <Route exact path="/" component ={MainPage}/>
 								<Route path="/Weekly" component = {WeeklyPage}/>
-								<Route path="/Main" component = {MainPage}/>
+								<Route path="/Main" component = {MainPage} />
 					</div>
 					<div class={ style.menu }>
 							<NavLink to="/Weekly">Weekly</NavLink>
