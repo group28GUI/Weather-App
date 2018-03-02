@@ -2,8 +2,6 @@ import { h, render, Component } from 'preact';
 
 import {PictureText} from '../components/PictureText'
 
-import {Clock} from '../components/Clock';
-
 var list =
 	[
 		{
@@ -48,7 +46,6 @@ export class DescriptionContainer extends Component
 		const content = list.map((data) => this.returnEachRow(data));
 		return (
 			<div>
-				<Clock />
 				{content}
 			</div>
 		);

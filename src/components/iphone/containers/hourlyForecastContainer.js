@@ -2,7 +2,6 @@
 import { h, render, Component } from 'preact';
 
 import {HourPicture} from '../components/HourPicture';
-import $ from 'jquery';
 
 export class HourlyForecastContainer extends Component{
   constructor(props){

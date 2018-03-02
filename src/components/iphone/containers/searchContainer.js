@@ -4,7 +4,7 @@ import $ from 'jquery';
 import style from '../style';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 //import {PlacesAutocomplete} from '../components/PlacesAutocomplete';
-
+import {Clock} from '../components/Clock';
 import {locationSetUp,countrySetUp} from '../Page/MainPage';
 
 export class SearchContainer extends Component
@@ -47,6 +47,7 @@ export class SearchContainer extends Component
 					<PlacesAutocomplete inputProps={inputProps}/>
 					<button type="submit">Submit</button>
 				</form>
+				<Clock />
 				<img src = ""/>
         <div class={ style.city }>{ locationSetUp }</div>
         <div class={ style.conditions }>{ this.props.cond }</div>
