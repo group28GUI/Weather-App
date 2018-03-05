@@ -38,10 +38,13 @@ export class MainPage extends Component{
   								 {hour:"",icon:"",temp:""}]} );
   		//define everything in order to not get further errors in the components
 
-  		this.fetchWeatherData(countrySetUp +"/"+locationSetUp);
   		this.changeLocation = this.changeLocation.bind(this);
       this.changeGrade = this.changeGrade.bind(this);
   	}
+
+    componentDidMount(){
+      this.fetchWeatherData(countrySetUp +"/"+locationSetUp);
+    }
 
     changeGrade = (pref) =>{
       preference = pref;

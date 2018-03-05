@@ -18,6 +18,9 @@ export class WeeklyPage extends Component{
       { daily : emptyArray });
     //define everything in order to not get further errors in the components
     console.log(locationSetUp);
+  }
+
+  componentDidMount(){
     this.fetchWeatherData(countrySetUp +"/"+locationSetUp);
   }
 
