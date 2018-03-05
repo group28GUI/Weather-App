@@ -14,9 +14,9 @@ export class HourPicture extends Component
     if (this.props.temp){
       return (
         <div className={style.hourlyforcastday}>
-          <div>{this.props.hour} : 00</div>
-          <img src = {this.props.icon} alt = "string"/>
-          <div className={ tempStyles }>{this.props.temp}</div>
+            <div>{this.props.hour} : 00</div>
+            <img src = {this.props.icon} alt = "string"/>
+            <div className={ tempStyles }>{this.props.temp}</div>
         </div>
       )
     }

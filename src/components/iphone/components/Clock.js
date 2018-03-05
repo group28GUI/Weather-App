@@ -1,9 +1,12 @@
 import { h, render, Component } from 'preact';
-import style from '../style';
+
+import {DarkMode} from '../index';
 
 var month = ["January","February","March","April", "May","June", "July","August","September", "October", "November", "December"];
 
 import {timezone} from "../Page/MainPage";
+
+import style from '../style';
 
 export class Clock extends Component
 {
