@@ -4,8 +4,8 @@
 @border_color: black;
 @border_color_nav: navy;
 @text_color_dark: white;
-@border_color_dark: white;
-@border_color_nav_dark: navy;
+@border_color_dark: #6DA4CC;
+@border_color_nav_dark: lightgrey;
 
 /*Colors - in light mode*/
 
@@ -14,7 +14,7 @@
 }
 
 .dark .container{
-	background: black;
+	background: linear-gradient(black,hsl(210,90%,52%));
 }
 
 .light .title{
@@ -78,9 +78,18 @@
 	border-left:  1px solid @border_color_nav;
 }
 
+.dark .navbar > :first-child{
+	border-left:  1px solid @border_color_nav_dark;
+}
+
 .light .navbar > div{
 	border: 1px solid @border_color_nav;
 	color:@text_color;
+}
+
+.dark .navbar > div{
+	border: 1px solid @border_color_nav_dark;
+	color:@text_color_dark;
 }
 
 .light .city{
@@ -88,8 +97,17 @@
 	border:1px solid @border_color;
 }
 
+.dark .city{
+	color: @text_color_dark;
+	border:1px solid @border_color_dark;
+}
+
 .light .location{
 	color:@text_color;
+}
+
+.dark .location{
+	color:@text_color_dark;
 }
 
 .light .maininfo > div{
@@ -97,6 +115,10 @@
 	color: @text_color;
 }
 
+.dark .maininfo > div{
+	border: 1px solid @border_color_dark;
+	color: @text_color_dark;
+}
 
 /*Position*/
 
@@ -181,7 +203,6 @@
 	padding-bottom: 4%;
 	margin-left: 10px;
 	margin-top: 25px;
-	color: @text_color;
   float: left;
 }
 
@@ -218,7 +239,7 @@ padding-bottom: 22px;
 .light .maininfo,
 .dark .maininfo{
 	clear:both;
-	margin-top: 6.7%;
+	margin-top: 6.6%;
 }
 
 .light .maininfo >  :nth-child(1),
@@ -329,7 +350,7 @@ padding-bottom: 22px;
 	margin-top: 0;
 	font-size: 3.5em;
 	font-weight: 400;
-	letter-spacing: -7px;
+	letter-spacing: -5.5px;
 	padding-left: 10px;
 }
 
