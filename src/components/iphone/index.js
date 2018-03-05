@@ -25,17 +25,18 @@ export default class Iphone extends Component {
 
 				<BrowserRouter>
 				<div>
-					<div className="content">
+					<div >
 					      <Route exact path="/" component ={MainPage}/>
 								<Route path="/Weekly" component = {WeeklyPage}/>
 								<Route path="/Main" component = {MainPage} />
 					</div>
-					<div class={ style.navbar }>
-							<NavLink to="/Weekly">Weekly</NavLink>
-							<NavLink to="/Main"><img src = "./res/home.jpg"/></NavLink>
-							<NavLink to="/">DarkMode</NavLink>
-						</div>
+
+					<div class ={style.navbar}>
+							 <div><NavLink to="/Weekly"><img src ="../../assets/backgrounds/calendar.png" alt="calendar"/></NavLink></div>
+							 <div><NavLink to="/Main"><img src = "../../assets/backgrounds/home.png" alt="home"/></NavLink></div>
+							 <div><NavLink to="/">DarkMode</NavLink></div>
 					</div>
+				</div>
 				</BrowserRouter>
 			</div>
 			);

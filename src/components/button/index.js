@@ -11,11 +11,16 @@ export default class Button extends Component {
 			}
 		}
 		return (
-			<div>
+			this.props.src? <div>
 				<button onClick={clickFunction}>
-					Button
+					<img src = {this.props.src} alt = {this.props.value}/>
 				</button>
-			</div>
+				</div>:
+				<span>
+					<button onClick={clickFunction}>
+						{this.props.value}
+					</button>
+					</span>
 		);
 	}
 }

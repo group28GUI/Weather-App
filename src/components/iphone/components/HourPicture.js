@@ -10,12 +10,13 @@ export class HourPicture extends Component
 
   render()
   {
-    const tempStyles = this.props.temp ? `${style.temperature} ${style.filled}` : style.temperature;
+    const tempStyles = this.props.temp ? `${style.temperaturehourly} ${style.filledhourly}` : style.temperaturehourly;
     if (this.props.temp){
       return (
-        <div>
+        <div className={style.hourlyforcastday}>
           <div>{this.props.hour} : 00</div>
-          <div class={ tempStyles }>{this.props.temp}</div>
+          <img src = {this.props.icon} alt = "string"/>
+          <div className={ tempStyles }>{this.props.temp}</div>
         </div>
       )
     }

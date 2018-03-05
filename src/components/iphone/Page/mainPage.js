@@ -6,7 +6,6 @@ import style from '../style';
 // import jquery for API calls
 
 import $ from 'jquery';
-import style_iphone from '../../button/style_iphone';
 // import the Button component
 
 import {SearchContainer} from '../containers/SearchContainer';
@@ -20,6 +19,7 @@ import {HourlyForecastContainer} from '../containers/HourlyForecastContainer';
 export let locationSetUp = "London";
 export let countrySetUp = "UK";
 export let timezone = "Europe/London";
+export let preference = "C";
 
 export class MainPage extends Component{
 
@@ -30,6 +30,7 @@ export class MainPage extends Component{
   		this.setState(
   			{ display: true,
   				general :"",
+          icon_now :"",
   				hourly :[{hour:"",icon:"",temp:""},
   								 {hour:"",icon:"",temp:""},
   								 {hour:"",icon:"",temp:""},
@@ -39,7 +40,13 @@ export class MainPage extends Component{
 
   		this.fetchWeatherData(countrySetUp +"/"+locationSetUp);
   		this.changeLocation = this.changeLocation.bind(this);
+      this.changeGrade = this.changeGrade.bind(this);
   	}
+
+    changeGrade = (pref) =>{
+      preference = pref;
+      this.fetchWeatherData(countrySetUp+"/"+locationSetUp);
+    }
   //need to be structured
   	changeLocation = (location) => {
       console.log(location);
@@ -49,7 +56,6 @@ export class MainPage extends Component{
         //user request to view the weather in his location
   			if (this.props.isGeolocationAvailable && this.props.isGeolocationEnabled && this.props.coords)
   			{
-
   				this.fetchWeatherData(this.props.coords.latitude+","+this.props.coords.longitude);
   			}
       }
@@ -59,7 +65,6 @@ export class MainPage extends Component{
 
   	// a call to fetch weather data via wunderground
   	fetchWeatherData = (search) => {
-      console.log("y");
   		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
   		var url = "http://api.wunderground.com/api/7e6a6831e455da38/conditions/hourly/q/"+search+".json";
   		$.ajax({
@@ -75,27 +80,31 @@ export class MainPage extends Component{
     parseResponse = (parsed_json) => {
   		//console.log(parsed_json);
   		var location = parsed_json['current_observation']['display_location']['city'];
-  		var temp_c = parsed_json['current_observation']['temp_c'];
+  		var temp_c = preference=='C' ? parsed_json['current_observation']['temp_c'] : parsed_json['current_observation']['temp_f'];;
   		var conditions = parsed_json['current_observation']['weather'];
   		var wind_speed = parsed_json['current_observation']['wind_mph'];
   		var rainPercentage = parsed_json['hourly_forecast'][0]['pop'];
   		var cloud_coverage = parsed_json['hourly_forecast'][0]['sky'];
-  		var icon_now = parsed_json['current_observation']['icon'];
+  		var icon_now = parsed_json['current_observation']['icon_url'];
       var country = parsed_json['current_observation']['display_location']['country'];
   		var day = [],i;
-  		for (i = 0;i<5;i++)
+  		for (i = 0;i<5;i++)  {
+        var temperature = preference=='C' ? parsed_json['hourly_forecast'][i]['temp']['metric']
+          : parsed_json['hourly_forecast'][i]['temp']['english'];
   			day[i] =
   			{
   				hour: parsed_json['hourly_forecast'][i]['FCTTIME']['hour'],
-  				icon: parsed_json['hourly_forecast'][i]['icon'],
-  				temp: parsed_json['hourly_forecast'][i]['temp']['metric']
+  				icon: parsed_json['hourly_forecast'][i]['icon_url'],
+  				temp: temperature
   			};
+      }
   		// set states for fields so they could be rendered later on
   		this.setState({
   			temp: temp_c,
   			cond : conditions,
   			general : [rainPercentage,wind_speed,cloud_coverage],
-  			hourly : day
+  			hourly : day,
+        icon_now : icon_now
   		});
       locationSetUp = location;
       countrySetUp = country;
@@ -108,7 +117,7 @@ export class MainPage extends Component{
   		// display all weather data
   		return (
   				<div class={ style.details }>
-  					<SearchContainer cond = {this.state.cond} temp = {this.state.temp} changeLocation = {this.changeLocation}/>
+  					<SearchContainer temp = {this.state.temp} icon = {this.state.icon_now} changeLocation = {this.changeLocation} changeGrade = {this.changeGrade}/>
   					<DescriptionContainer value = {this.state.general}/>
   					<HourlyForecastContainer hourly = {this.state.hourly}/>
   					<SuggestionContainer />

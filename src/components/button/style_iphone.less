@@ -1,14 +1,10 @@
 @import '~style/helpers';
+@import '~components/iphone/style/@{text_color}';
 
-.container {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 550px;
-}
 .container button {
   margin: 0 auto;
-  font-size: 1.5rem;
-  padding: 1rem 2rem;
+  font-size: 1rem;
+  padding: 10px 1rem;
   display: block;
   background: #6DA4CC;
   border: 1px solid #fff;
@@ -21,4 +17,23 @@
   background: #fff;
   color: #6DA4CC;
   border: 1px solid transparent;
+}
+
+.container div :not(form) button:hover{
+  padding: 5px 0.75em;
+}
+
+.container div :not(form) button  {
+  margin: 0 auto;
+  font-size: 1rem;
+  padding: 5px 0.75em;
+  color: #fff;
+  background: transparent;
+  border:0px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  display:inline;
+  font-weight: 300;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
 }

@@ -1,4 +1,5 @@
 import { h, render, Component } from 'preact';
+import style from '../style';
 
 var month = ["January","February","March","April", "May","June", "July","August","September", "October", "November", "December"];
 
@@ -43,7 +44,7 @@ export class Clock extends Component
   render()
   {
     return (
-      <div>
+      <div class={style.datandtime}>
         <div>{this.state.first}</div>
         <div>{this.state.second}</div>
       </div>);

@@ -5,7 +5,12 @@ import style from '../style';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 //import {PlacesAutocomplete} from '../components/PlacesAutocomplete';
 import {Clock} from '../components/Clock';
-import {locationSetUp,countrySetUp} from '../Page/MainPage';
+import {locationSetUp,countrySetUp,preference} from '../Page/MainPage';
+import Button from '../../button';
+import style_iphone from '../../button/style_iphone';
+
+const loop_src = "../../assets/backgrounds/loop.png";
+const gps_src = "../../assets/backgrounds/gps.png";
 
 export class SearchContainer extends Component
 {
@@ -13,6 +18,7 @@ export class SearchContainer extends Component
 	constructor(props){
 		super(props);
 		this.setState({address : locationSetUp});
+		this.getTemperatureFormatted = this.getTemperatureFormatted.bind(this);
 	}
 
 	onChange = (address) =>{
@@ -33,6 +39,38 @@ export class SearchContainer extends Component
 		this.props.changeLocation(latLng.lat+','+latLng.lng);
 	}
 
+	handleGrade = (event) =>{
+		event.preventDefault();
+		this.props.changeGrade(event.toElement.innerHTML);
+	}
+
+	getTemperatureFormatted(){
+		const tempStyles = this.props.temp ? `${style.temperature} ${style.filled}` : style.temperature;
+		let part = "";
+
+		if (preference == 'F'){
+			part = (<div>
+								<Button value="C" clickFunction={this.handleGrade}>C</Button>
+								<span style={{paddingRight: '15px'}}>/</span>
+								<span><span>F</span></span>
+							</div>);
+						}
+		else {
+			part = (
+					<div>
+						<span><span>C</span></span>
+						<span style={{paddingLeft: '15px'}}>/</span>
+						<Button value="F" clickFunction={this.handleGrade}>F</Button>
+					</div>);
+		}
+		return(
+			<div class={style.tempdisplay}>
+				<div><span class={ tempStyles }>{ this.props.temp }</span></div>
+				{part}
+			</div>
+		);
+	}
+
   // the main render method for the SearchContainer component
 	render() {
 		const inputProps = {
@@ -40,25 +78,28 @@ export class SearchContainer extends Component
 		 onChange: this.onChange,
 	  }
 		// check if temperature data is fetched, if so add the sign styling to the page
-		const tempStyles = this.props.temp ? `${style.temperature} ${style.filled}` : style.temperature;
+		const tempFormatted = this.getTemperatureFormatted();
+
     return (
-      <div>
-				<form onSubmit={this.handleFormSubmit}>
+      <div class ={style_iphone.container} >
+				<form onSubmit={this.handleFormSubmit} class={style.searchbar}>
 					<PlacesAutocomplete inputProps={inputProps}/>
-					<button type="submit">Submit</button>
+					<Button value="GPS" src={gps_src}>GPS</Button>
+					<Button value="Submit" src={loop_src}>Submit</Button>
 				</form>
-				<Clock />
-				<img src = ""/>
-        <div class={ style.city }>{ locationSetUp }</div>
-        <div class={ style.conditions }>{ this.props.cond }</div>
-        <span class={ tempStyles }>{ this.props.temp }</span>
+				<div class={style.display}>
+						<Clock />
+						{tempFormatted}
+						<img src = {this.props.icon}/>
+				</div>
+				<div class={ style.city }>{ locationSetUp }</div>
       </div>
     );
   }
 }
 
 /*<form onSubmit={this.handleFormSubmit}>
-	<PlacesAutocomplete inputProps={inputProps} />
+	<PlacesAutocomplete />
 	<button type="submit">Submit</button>
 </form>
 */

@@ -7,6 +7,9 @@ const suggestedText = ["Make sure you take an umbrella, also wear a jacket and n
 export class SuggestionContainer extends Component{
   render()
   {
-    return <div>{suggestedText}</div>
+    return (
+      <div class={style.suggestionbox}>
+      {suggestedText}
+       </div>)
   }
 }

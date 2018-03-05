@@ -3,7 +3,7 @@ import { h, render, Component } from 'preact';
 import $ from 'jquery';
 import {WeeklyTable} from '../containers/WeeklyTable';
 
-import {locationSetUp,countrySetUp} from './MainPage';
+import {locationSetUp,countrySetUp,preference} from './MainPage';
 
 export class WeeklyPage extends Component{
 
@@ -42,11 +42,12 @@ export class WeeklyPage extends Component{
       const rain_day_chances = Number(parsed_json['forecast']['txt_forecast']['forecastday'][i*2]['pop']);
       const rain_night_chances = Number(parsed_json['forecast']['txt_forecast']['forecastday'][i*2+1]['pop']);
       const average_chance = (rain_day_chances + rain_night_chances)/2;
-      
+      const temperature = preference=='C'? parsed_json['forecast']['simpleforecast']['forecastday'][i]['high']['celsius']
+          : parsed_json['forecast']['simpleforecast']['forecastday'][i]['high']['fahrenheit'];
       day[i] =
       {
         weekday: parsed_json['forecast']['simpleforecast']['forecastday'][i]['date']['weekday_short'],
-        temp: parsed_json['forecast']['simpleforecast']['forecastday'][i]['high']['celsius'],
+        temp: temperature,
         rain: average_chance,
         cloud_c :"" //parsed_json['simpleforecast']['forecastday'][i]
       };
