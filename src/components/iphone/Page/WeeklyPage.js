@@ -5,6 +5,8 @@ import {WeeklyTable} from '../containers/WeeklyTable';
 
 import {locationSetUp,countrySetUp,preference} from './MainPage';
 
+
+
 export class WeeklyPage extends Component{
 
   // a constructor with initial set states
