@@ -8,9 +8,29 @@ import {Clock} from '../components/Clock';
 import {locationSetUp,countrySetUp,preference} from '../Page/MainPage';
 import Button from '../../button';
 import style_iphone from '../../button/style_iphone';
+import Async from 'react-promise'
 
 const loop_src = "../../assets/backgrounds/loop.png";
 const gps_src = "../../assets/backgrounds/gps.png";
+
+var getCityAddress = exports.getCityAddress = function (result) {
+	return new Promise((resolve, reject) => {
+    try {
+			let city = result[0].long_name;
+			const size = result.length;
+			let country = result[size-1].short_name;
+			if (country == 'US')
+				country = result[size-2].short_name;
+			const address =
+				{country: country,
+        city: city};
+			resolve(address)
+    } catch (e) {
+      reject(e)
+    }
+  })
+}
+
 
 export class SearchContainer extends Component
 {
@@ -27,16 +47,14 @@ export class SearchContainer extends Component
 
 	handleFormSubmit = (event) => {
     event.preventDefault()
-		geocodeByAddress(this.state.address)
-		.then(results => getLatLng(results[0]))
-		.then(latLng => this.sendLocation(latLng))
+		let funct = geocodeByAddress(this.state.address)
+		.then(results => getCityAddress(results[0].address_components))// getLatLng(results[0]))
+		.then(address => this.sendLocation(address))
 		.catch(error => this.props.changeLocation(""))
 	}
 
-	sendLocation = (latLng) =>{
-		latLng.lat = Number(latLng.lat.toFixed(4))
-		latLng.lng = Number(latLng.lng.toFixed(4))
-		this.props.changeLocation(latLng.lat+','+latLng.lng);
+	sendLocation = (address) =>{
+		this.props.changeLocation(address.country+"/"+ address.city);
 	}
 
 	handleGrade = (event) =>{

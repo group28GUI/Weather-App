@@ -17,7 +17,7 @@ export class WeeklyPage extends Component{
     this.setState(
       { daily : emptyArray });
     //define everything in order to not get further errors in the components
-    console.log(locationSetUp);
+    console.log(countrySetUp +"/"+locationSetUp);
   }
 
   componentDidMount(){
@@ -37,8 +37,19 @@ export class WeeklyPage extends Component{
     this.setState({ display: false });
   }
 
+  initialiseRequest(parsed_json)
+  {
+    console.log(parsed_json);
+    let code = parsed_json['response']['results'][0]['zmw'];
+    console.log(code);
+    this.fetchWeatherData('zmw:' + code);
+  }
+
   parseResponse = (parsed_json) => {
-    //console.log(parsed_json);
+    if (parsed_json['forecast']== undefined)
+    {
+      this.initialiseRequest(parsed_json);return;
+    }
     var day = [],i;
     for (i = 0;i<7;i++)
     {

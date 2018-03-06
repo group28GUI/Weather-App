@@ -80,8 +80,20 @@ export class MainPage extends Component{
   		this.setState({ display: false });
   	}
 
+    initialiseRequest(parsed_json)
+    {
+      console.log(parsed_json);
+      let code = parsed_json['response']['results'][0]['zmw'];
+      console.log(code);
+      this.fetchWeatherData('zmw:' + code);
+    }
+
     parseResponse = (parsed_json) => {
   		//console.log(parsed_json);
+      if (parsed_json['current_observation']== undefined)
+      {
+        this.initialiseRequest(parsed_json);return;
+      }
   		var location = parsed_json['current_observation']['display_location']['city'];
   		var temp_c = preference=='C' ? parsed_json['current_observation']['temp_c'] : parsed_json['current_observation']['temp_f'];;
   		var conditions = parsed_json['current_observation']['weather'];
