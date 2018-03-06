@@ -70,7 +70,8 @@ export class MainPage extends Component{
   	fetchWeatherData = (search) => {
   		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
   		var url = "http://api.wunderground.com/api/7e6a6831e455da38/conditions/hourly/q/"+search+".json";
-  		$.ajax({
+      this.setState({search: search.substring(0,2), display:false});
+      $.ajax({
   			url: url,
   			dataType: "jsonp",
   			success : this.parseResponse,
@@ -82,16 +83,22 @@ export class MainPage extends Component{
 
     initialiseRequest(parsed_json)
     {
-      console.log(parsed_json);
-      let code = parsed_json['response']['results'][0]['zmw'];
-      console.log(code);
+      let code = "";
+      let i;
+      for (i = 0; i < parsed_json['response']['results'].length;i++)
+      {
+        if (parsed_json['response']['results'][i]['country_iso3166'] == this.state.search)
+        {
+          code = parsed_json['response']['results'][i]['zmw'];
+          break;
+        }
+      }
       this.fetchWeatherData('zmw:' + code);
     }
 
     parseResponse = (parsed_json) => {
   		//console.log(parsed_json);
-      if (parsed_json['current_observation']== undefined)
-      {
+      if (parsed_json['current_observation']== undefined){
         this.initialiseRequest(parsed_json);return;
       }
   		var location = parsed_json['current_observation']['display_location']['city'];

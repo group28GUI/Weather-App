@@ -26,6 +26,7 @@ export class WeeklyPage extends Component{
 
   fetchWeatherData = (search) => {
     // API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
+    this.setState({search: search.substring(0,2), display:false});
     var url = "http://api.wunderground.com/api/7e6a6831e455da38/forecast10day/q/"+search+".json";
     $.ajax({
       url: url,
@@ -39,15 +40,22 @@ export class WeeklyPage extends Component{
 
   initialiseRequest(parsed_json)
   {
-    console.log(parsed_json);
-    let code = parsed_json['response']['results'][0]['zmw'];
-    console.log(code);
+    let code = "";
+    let i;
+    for (i = 0; i < parsed_json['response']['results'].length;i++)
+    {
+      if (parsed_json['response']['results'][i]['country_iso3166'] == this.state.search)
+      {
+        code = parsed_json['response']['results'][i]['zmw'];
+        break;
+      }
+    }
     this.fetchWeatherData('zmw:' + code);
-  }
+   }
+
 
   parseResponse = (parsed_json) => {
-    if (parsed_json['forecast']== undefined)
-    {
+    if (parsed_json['forecast']== undefined){
       this.initialiseRequest(parsed_json);return;
     }
     var day = [],i;

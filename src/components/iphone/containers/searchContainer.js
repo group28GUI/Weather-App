@@ -31,7 +31,6 @@ var getCityAddress = exports.getCityAddress = function (result) {
   })
 }
 
-
 export class SearchContainer extends Component
 {
   // a constructor with initial set states
