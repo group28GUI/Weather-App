@@ -38,6 +38,8 @@ export class SearchContainer extends Component
 		super(props);
 		this.setState({address : locationSetUp});
 		this.getTemperatureFormatted = this.getTemperatureFormatted.bind(this);
+		this.emptyAddress = this.emptyAddress.bind(this);
+		this.onChange = this.onChange.bind(this);
 	}
 
 	onChange = (address) =>{
@@ -61,13 +63,17 @@ export class SearchContainer extends Component
 		this.props.changeGrade(event.toElement.innerHTML);
 	}
 
+	emptyAddress = () =>{
+		this.onChange("");
+	}
+
 	getTemperatureFormatted(){
 		const tempStyles = this.props.temp ? `${style.temperature} ${style.filled}` : style.temperature;
 		let part = "";
 
 		if (preference == 'F'){
 			part = (<div>
-								<Button value="C" clickFunction={this.handleGrade}>C</Button>
+								<Button type="button" value="C" clickFunction={this.handleGrade}>C</Button>
 								<span style={{paddingRight: '15px'}}>/</span>
 								<span><span>F</span></span>
 							</div>);
@@ -77,7 +83,7 @@ export class SearchContainer extends Component
 					<div>
 						<span><span>C</span></span>
 						<span style={{paddingLeft: '15px'}}>/</span>
-						<Button value="F" clickFunction={this.handleGrade}>F</Button>
+						<Button type="button" value="F" clickFunction={this.handleGrade}>F</Button>
 					</div>);
 		}
 		return(
@@ -101,8 +107,8 @@ export class SearchContainer extends Component
       <div class ={style_iphone.container} >
 				<form onSubmit={this.handleFormSubmit} class={style.searchbar}>
 					<PlacesAutocomplete inputProps={inputProps}/>
-					<Button value="GPS" src={gps_src}>GPS</Button>
-					<Button value="Submit" src={loop_src}>Submit</Button>
+					<Button type="button" value="GPS" src={gps_src} clickFunction={this.emptyAddress}>GPS</Button>
+					<Button type="submit" value="Submit" src={loop_src}>Submit</Button>
 				</form>
 				<div class={style.display}>
 						<Clock />
@@ -114,9 +120,3 @@ export class SearchContainer extends Component
     );
   }
 }
-
-/*<form onSubmit={this.handleFormSubmit}>
-	<PlacesAutocomplete />
-	<button type="submit">Submit</button>
-</form>
-*/

@@ -40,6 +40,7 @@ export class MainPage extends Component{
 
   		this.changeLocation = this.changeLocation.bind(this);
       this.changeGrade = this.changeGrade.bind(this);
+      this.getGPSPosition = this.getGPSPosition.bind(this);
   	}
 
     componentDidMount(){
@@ -50,17 +51,21 @@ export class MainPage extends Component{
       preference = pref;
       this.fetchWeatherData(countrySetUp+"/"+locationSetUp);
     }
-  //need to be structured
+
+    getGPSPosition(position)
+    {
+      this.fetchWeatherData(position.coords.latitude+","+ position.coords.longitude);
+    }
+
+    //need to be structured
   	changeLocation = (location) => {
       console.log(location);
   		if (location == "")
   		{
-        console.log(this.props);
-        //user request to view the weather in his location
-  			if (this.props.isGeolocationAvailable && this.props.isGeolocationEnabled && this.props.coords)
-  			{
-  				this.fetchWeatherData(this.props.coords.latitude+","+this.props.coords.longitude);
-  			}
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(this.getGPSPosition);
+        } else {
+        }
       }
   		else
   			this.fetchWeatherData(location);

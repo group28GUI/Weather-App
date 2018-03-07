@@ -48,7 +48,7 @@ export default class Iphone extends Component {
 					<div class ={style.navbar}>
 							 <div ><NavLink to="/Weekly"><img src ="../../assets/backgrounds/calendar.png" alt="calendar"/></NavLink></div>
 							 <div ><NavLink to="/Main"><img src = "../../assets/backgrounds/home.png" alt="home"/></NavLink></div>
-							 <div class={style_iphone.transparent}><Button src={mode_src} value="DarkMode" clickFunction={this.changeMode}/></div>
+							 <div class={style_iphone.transparent}><Button type="button" src={mode_src} value="DarkMode" clickFunction={this.changeMode}/></div>
 					</div>
 				</div>
 				</BrowserRouter>

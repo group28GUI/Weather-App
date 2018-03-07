@@ -17,7 +17,7 @@ export default class Button extends Component {
 				</button>
 				</div>:
 				<span>
-					<button onClick={clickFunction}>
+					<button type={this.props.type} onClick={clickFunction}>
 						{this.props.value}
 					</button>
 					</span>
