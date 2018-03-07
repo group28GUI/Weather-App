@@ -67,15 +67,17 @@ export class MainPage extends Component{
         } else {
         }
       }
-  		else
+  		else{
+
   			this.fetchWeatherData(location);
+      }
   	}
 
   	// a call to fetch weather data via wunderground
   	fetchWeatherData = (search) => {
-  		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-  		var url = "http://api.wunderground.com/api/7e6a6831e455da38/conditions/hourly/q/"+search+".json";
       this.setState({search: search.substring(0,2), display:false});
+      // API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
+  		var url = "http://api.wunderground.com/api/7e6a6831e455da38/conditions/hourly/q/"+search+".json";
       $.ajax({
   			url: url,
   			dataType: "jsonp",
@@ -89,22 +91,23 @@ export class MainPage extends Component{
     initialiseRequest(parsed_json)
     {
       let code = "";
-      let i;
-      for (i = 0; i < parsed_json['response']['results'].length;i++)
+      let i = 0;
+      for (; i < parsed_json['response']['results'].length;i++)
       {
-        if (parsed_json['response']['results'][i]['country_iso3166'] == this.state.search)
-        {
-          code = parsed_json['response']['results'][i]['zmw'];
+        if (parsed_json['response']['results'][i]['country_iso3166'] == this.state.search ||
+            parsed_json['response']['results'][i]['country'] == this.state.search)
           break;
-        }
       }
+      code = parsed_json['response']['results'][i]['zmw'];
       this.fetchWeatherData('zmw:' + code);
     }
 
     parseResponse = (parsed_json) => {
   		//console.log(parsed_json);
-      if (parsed_json['current_observation']== undefined){
-        this.initialiseRequest(parsed_json);return;
+      if (parsed_json['current_observation']== undefined)
+      {
+        this.initialiseRequest(parsed_json);
+        return;
       }
   		var location = parsed_json['current_observation']['display_location']['city'];
   		var temp_c = preference=='C' ? parsed_json['current_observation']['temp_c'] : parsed_json['current_observation']['temp_f'];;

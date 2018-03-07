@@ -41,15 +41,13 @@ export class WeeklyPage extends Component{
   initialiseRequest(parsed_json)
   {
     let code = "";
-    let i;
-    for (i = 0; i < parsed_json['response']['results'].length;i++)
+    let i = 0;
+    for (; i < parsed_json['response']['results'].length;i++)
     {
-      if (parsed_json['response']['results'][i]['country_iso3166'] == this.state.search)
-      {
-        code = parsed_json['response']['results'][i]['zmw'];
+      if (parsed_json['response']['results'][i]['country'] == countrySetUp)
         break;
-      }
     }
+    code = parsed_json['response']['results'][i]['zmw'];
     this.fetchWeatherData('zmw:' + code);
    }
 
