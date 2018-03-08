@@ -5,6 +5,7 @@ import {preference} from '../Page/MainPage';
 
 const essential = "Essentials";
 const suitable = "Suitable";
+// "suggest" is an array which contains all of the suggestion statements
 const suggest = [
     essential + ": Make sure you take an umbrella, also wear a jacket, scarf, gloves and non-slippery shoes",
     essential + ": Make sure you take an umbrella, also wear a jacket and non-slippery shoes",
@@ -19,14 +20,18 @@ export class SuggestionContainer extends Component{
   constructor(props) {
 		super(props);
 	}
-
+  // Function returns the correct suggestion based on the weather
 	suggestion = () => {
     let comparegrade1 = 10,comparegrade2 = 20;
+    /* This statement will change the values to fahrenheit if the user prefers
+     to use the fahrenheit scale */
     if (preference =='F')
     {
       comparegrade1 = 50;
       comparegrade2 = 68;
     }
+    /* Switch commands to check the current conditions and to return the correct
+    suggestion */
 		if (this.props.rain !== undefined) {
       switch(true)
       {

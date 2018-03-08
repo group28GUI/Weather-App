@@ -36,7 +36,7 @@ export class SearchContainer extends Component
   // a constructor with initial set states
 	constructor(props){
 		super(props);
-		this.setState({address : locationSetUp});
+		this.setState({address : ""});
 		this.getTemperatureFormatted = this.getTemperatureFormatted.bind(this);
 		this.emptyAddress = this.emptyAddress.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -99,6 +99,7 @@ export class SearchContainer extends Component
 		const inputProps = {
 		 value: this.state.address,
 		 onChange: this.onChange,
+		 placeholder: 'Search',
 	  }
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempFormatted = this.getTemperatureFormatted();

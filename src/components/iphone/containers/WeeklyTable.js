@@ -1,6 +1,7 @@
 import { h, render, Component } from 'preact';
 
 import style from '../style';
+import {preference} from '../Page/MainPage';
 
 export class WeeklyTable extends Component{
 
@@ -22,7 +23,7 @@ export class WeeklyTable extends Component{
       return (
         <table class={style.weeklyTable}>
           <thead>
-            <tr><td>Day</td><td>Temperature</td><td>Rain</td><td>Conditions</td></tr>
+            <tr><td>Day</td><td>Temperature {'('+preference+')'}</td><td>Rain</td><td>Conditions</td></tr>
           </thead>
           <tbody>
           {content}
