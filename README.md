@@ -1,7 +1,7 @@
 # Smart Weather
 * A weather app designed for commuters.
 * The app suggests suitable clothing to wear based on the current weather. 
-* The app allows users to search locations and find their current location.
+* The app allows users to search for locations and find their current location.
 * User can change theme to dark mode.
 
 Overview
