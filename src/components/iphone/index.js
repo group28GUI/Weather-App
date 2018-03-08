@@ -9,7 +9,6 @@ import Button from '../button';
 import style_iphone from '../button/style_iphone';
 import style from './style';
 
-
 export let darkModeEnable = false;
 const mode_src = "../../assets/backgrounds/mode.png";
 

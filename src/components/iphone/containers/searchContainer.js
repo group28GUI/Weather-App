@@ -19,7 +19,7 @@ var getCityAddress = exports.getCityAddress = function (result) {
 			let city = result[0].long_name;
 			const size = result.length;
 			let country = result[size-1].short_name;
-			if (country == 'US')
+			if (country == 'US' || country.length > 2)
 				country = result[size-2].short_name;
 			const address =
 				{country: country,

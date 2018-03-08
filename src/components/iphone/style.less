@@ -6,11 +6,12 @@
 @text_color_dark: white;
 @border_color_dark: #6DA4CC;
 @border_color_nav_dark: lightgrey;
-
+@box-shadow: inset 0 0 10px rgba(0,0,0,.5);
+@box-shadow_dark: #6DA4CC 0px 0px 10px inset;
 /*Colors - in light mode*/
 
 .light .container{
-	background: linear-gradient(lightblue,hsl(210,50%,80%));
+	background: linear-gradient(lightblue,hsl(300,50%,80%));
 }
 
 .dark .container{
@@ -53,11 +54,13 @@
 .dark .hourlyforcastday{
 	border: 1px solid @border_color_dark;
 	color:@text_color_dark;
+	box-shadow: @box-shadow_dark;
 }
 
 .light .hourlyforcastday{
 	border: 1px solid @border_color;
 	color:@text_color;
+	box-shadow: @box-shadow;
 }
 
 .dark .hourlyforcast > div:first-child{
@@ -68,13 +71,15 @@
 	border-left: 1px solid @border_color;
 }
 
-.light .suggestionbox{
+.light .suggestionbox,
+.light .weeklybox{
 	border: 1px solid @border_color;
 	color: black;
 	background-color: white;
 }
 
-.dark .suggestionbox{
+.dark .suggestionbox,
+.dark .weeklybox{
 	border: 1px solid @border_color_dark;
 	color: black;
 	background-color: white;
@@ -101,32 +106,91 @@
 .light .city{
 	color: @text_color;
 	border:1px solid @border_color;
+	box-shadow: @box-shadow;
 }
 
 .dark .city{
 	color: @text_color_dark;
 	border:1px solid @border_color_dark;
-}
-
-.light .location{
-	color:@text_color;
-}
-
-.dark .location{
-	color:@text_color_dark;
+	box-shadow: @box-shadow_dark;
 }
 
 .light .maininfo > div{
 	border: 1px solid @border_color;
 	color: @text_color;
+	box-shadow: @box-shadow;
 }
 
 .dark .maininfo > div{
 	border: 1px solid @border_color_dark;
 	color: @text_color_dark;
+	box-shadow: @box-shadow_dark;
+}
+
+.dark .weeklyTable thead{
+	color: @text_color_dark;
+}
+
+.light .weeklyTable,
+.dark .weeklyTable{
+	color: @text_color;
+}
+
+.light .weeklyTable > tbody tr td:first-child div,
+.dark .weeklyTable > tbody tr td:first-child div{
+	background-color: #e1deea;
+}
+
+.light .weeklyTable > tbody tr td:nth-child(2) div ,
+.dark .weeklyTable > tbody tr td:nth-child(2) div{
+	background-color: #c4bdd8;
+}
+
+.light .weeklyTable > tbody tr td:nth-child(3) div,
+.dark .weeklyTable > tbody tr td:nth-child(3) div{
+	background-color: #a49cc2;
+}
+
+.light .weeklyTable > tbody tr td:nth-child(4) div,
+.dark .weeklyTable > tbody tr td:nth-child(4) div{
+	background-color: #877cae;
+}
+
+.light .navbar > div,
+.dark .navbar > div {
+	background-color:grey;
+}
+
+.light .weeklyTable > tbody tr td div,
+.dark .weeklyTable > tbody tr td div{
+	box-shadow: @box-shadow;
 }
 
 /*Position*/
+.light .weeklyTable,
+.dark .weeklyTable {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:35px;
+	margin-bottom: 40px;
+}
+
+.light .weeklyTable > tbody tr td:nth-child(-n+3) div,
+.dark .weeklyTable > tbody tr td:nth-child(-n+3) div{
+	margin: 1px;
+  height: 52px;
+  padding-top: 15px;
+}
+
+.light .weeklyTable > thead td,
+.dark .weeklyTable > thead td{
+	font-size:1em;
+	font-weight: 500;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 
 .light .container,
 .dark .container{
@@ -387,19 +451,23 @@ padding-bottom: 22px;
 	padding-top: 7px;
 }
 
-.light .suggestionbox,
-.dark .suggestionbox{
-	padding-right: 3%;
-	padding-left: 3%;
-	padding-top: 3%;
-	padding-bottom: 3%;
-}
+.light .weeklybox,
+.dark .weeklybox{
+		height:45px;
+		margin-left: 3%;
+		margin-right: 3%;
+		padding-top: 3%;
+		display: block;
+		clear:both;
+		margin-bottom: 3%;
+	}
 
 .light .suggestionbox,
 .dark .suggestionbox{
 		height:65px;
 		margin-left: 3%;
 		margin-right: 3%;
+		padding: 3%;
 		display: block;
 		clear:both;
 		margin-bottom: 3%;

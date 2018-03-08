@@ -2,8 +2,8 @@ import { h, render, Component } from 'preact';
 
 import $ from 'jquery';
 import {WeeklyTable} from '../containers/WeeklyTable';
-
-import {locationSetUp,countrySetUp,preference} from './MainPage';
+import style from '../style';
+import {locationSetUp,countrySetUp,preference,initialiseRequest} from './MainPage';
 
 export class WeeklyPage extends Component{
 
@@ -38,23 +38,11 @@ export class WeeklyPage extends Component{
     this.setState({ display: false });
   }
 
-  initialiseRequest(parsed_json)
-  {
-    let code = "";
-    let i = 0;
-    for (; i < parsed_json['response']['results'].length;i++)
-    {
-      if (parsed_json['response']['results'][i]['country'] == countrySetUp)
-        break;
-    }
-    code = parsed_json['response']['results'][i]['zmw'];
-    this.fetchWeatherData('zmw:' + code);
-   }
-
-
   parseResponse = (parsed_json) => {
     if (parsed_json['forecast']== undefined){
-      this.initialiseRequest(parsed_json);return;
+      const code = initialiseRequest(parsed_json,countrySetUp);
+      this.fetchWeatherData('zmw:' + code);
+      return;
     }
     var day = [],i;
     for (i = 0;i<7;i++)
@@ -69,7 +57,7 @@ export class WeeklyPage extends Component{
         weekday: parsed_json['forecast']['simpleforecast']['forecastday'][i]['date']['weekday_short'],
         temp: temperature,
         rain: average_chance,
-        cloud_c :"" //parsed_json['simpleforecast']['forecastday'][i]
+        cloud_c: parsed_json['forecast']['txt_forecast']['forecastday'][i*2]['icon_url']
       };
     }
     // set states for fields so they could be rendered later on
@@ -81,7 +69,7 @@ export class WeeklyPage extends Component{
   {
     return (
       <div>
-        <div>Weekly Weather Forecast</div>
+        <div class={style.weeklybox} >Weekly Weather Forecast</div>
         <WeeklyTable daily = {this.state.daily}/>
       </div>
     );

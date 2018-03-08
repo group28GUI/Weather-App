@@ -21,6 +21,20 @@ export let countrySetUp = "UK";
 export let timezone = "Europe/London";
 export let preference = "C";
 
+var initialiseRequest = exports.initialiseRequest = function(parsed_json, search)
+{
+  let code = "";
+  let i = 0;
+  for (; i < parsed_json['response']['results'].length;i++)
+  {
+    if (parsed_json['response']['results'][i]['country_iso3166'] == search ||
+        parsed_json['response']['results'][i]['country'] == search)
+      break;
+  }
+  code = parsed_json['response']['results'][i]['zmw'];
+  return code;
+}
+
 export class MainPage extends Component{
 
   	// a constructor with initial set states
@@ -88,25 +102,12 @@ export class MainPage extends Component{
   		this.setState({ display: false });
   	}
 
-    initialiseRequest(parsed_json)
-    {
-      let code = "";
-      let i = 0;
-      for (; i < parsed_json['response']['results'].length;i++)
-      {
-        if (parsed_json['response']['results'][i]['country_iso3166'] == this.state.search ||
-            parsed_json['response']['results'][i]['country'] == this.state.search)
-          break;
-      }
-      code = parsed_json['response']['results'][i]['zmw'];
-      this.fetchWeatherData('zmw:' + code);
-    }
-
     parseResponse = (parsed_json) => {
   		//console.log(parsed_json);
       if (parsed_json['current_observation']== undefined)
       {
-        this.initialiseRequest(parsed_json);
+        let code = initialiseRequest(parsed_json,this.state.search);
+        this.fetchWeatherData('zmw:' + code);
         return;
       }
   		var location = parsed_json['current_observation']['display_location']['city'];
@@ -150,7 +151,7 @@ export class MainPage extends Component{
   					<SearchContainer temp = {this.state.temp} icon = {this.state.icon_now} changeLocation = {this.changeLocation} changeGrade = {this.changeGrade}/>
   					<DescriptionContainer value = {this.state.general}/>
   					<HourlyForecastContainer hourly = {this.state.hourly}/>
-  					<SuggestionContainer />
+  					<SuggestionContainer rain = {this.state.general[0]} cond = {this.state.cond} temp = {this.state.temp}/>
   				</div>
   		);
   	}
