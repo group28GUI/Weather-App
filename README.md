@@ -2,7 +2,7 @@
 * A weather app designed for commuters.
 * The app suggests suitable clothing to wear based on the current weather. 
 * The app allows users to search for locations and find their current location.
-* User can change theme to dark mode.
+* Users can change background to a dark theme.
 
 Overview
 ======
