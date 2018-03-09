@@ -1,3 +1,5 @@
+<img src = "Logo.jpg" width = "200">
+
 # Smart Weather
 * A weather app designed for commuters.
 * The app suggests suitable clothing to wear based on the current weather.
@@ -44,3 +46,7 @@ npm run dev
 Authors
 ------
 Abdullahi Abokar, Maria Roxana Luca, Abubaker Osman, Umar Chaudhry, Mohammed Akhyar Uddin, Shiblu Miah
+
+Preview
+======
+![](App%20Screenshots.jpg)
