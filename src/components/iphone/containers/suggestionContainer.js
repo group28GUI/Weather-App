@@ -8,10 +8,10 @@ const suitable = "Suitable";
 
 // Array of SUGGESTIONS statements!
 const suggest = [
-  essential + ": Make sure you take an umbrella, also wear a jacket, scarf, gloves and non-slippery shoes.",
-  essential + ": Make sure you take an umbrella, also wear a jacket and non-slippery shoes.",
-  essential + ": Make sure you wear a jacket, scarf, gloves, a few layer of clothes and non-slippery shoes.",
-  essential + ": Make sure you wear a jacket, scarf, gloves and a few layer of clothes.",
+  essential + ": Take an umbrella, also wear a jacket, scarf, gloves and non-slippery shoes.",
+  essential + ": Take an umbrella, also wear a jacket and non-slippery shoes.",
+  essential + ": Jacket, scarf, gloves, a few layer of clothes and non-slippery shoes.",
+  essential + ": Jacket, scarf, gloves and a few layer of clothes.",
   suitable + ": Hoodies, Sweatshirts, Leggings, Jeans, Tracksuits.",
   suitable + ": Tops, T-shirts, Shorts, Skirts, Polos, Sandals."
 ];
