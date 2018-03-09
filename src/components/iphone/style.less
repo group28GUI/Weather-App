@@ -60,22 +60,25 @@
 	border-bottom: 2px solid #fff;
 }
 
+//Box properties of the hourlyforcast in dark mode.
 .dark .hourlyforcastday{
 	border: 1px solid @border_color_dark;
 	color:@text_color_dark;
 	box-shadow: @box-shadow_dark;
 }
 
+//Box properties of the hourlyforcast in light mode.
 .light .hourlyforcastday{
 	border: 1px solid @border_color;
 	color:@text_color;
 	box-shadow: @box-shadow;
 }
-
+//left box border for first child in hourly forcast in dark mode.
 .dark .hourlyforcast > div:first-child{
 	border-left: 1px solid @border_color_dark;
 }
 
+//left box border for first child in hourly forcast in light mode. 
 .light .hourlyforcast > div:first-child{
 	border-left: 1px solid @border_color;
 }
