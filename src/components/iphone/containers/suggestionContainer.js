@@ -58,8 +58,8 @@ export class SuggestionContainer extends Component {
          }
       }
 
-    //add a constraint not to render entire component
-    shouldComponentUpdate(nextProps,nextState){
+    // ADD constraint to NOT render entire component!
+    shouldComponentUpdate(nextProps, nextState) {
         if (this.props.temp == nextProps.temp)
            return false;
         return true;
