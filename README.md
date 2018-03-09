@@ -1,6 +1,6 @@
 # Smart Weather
 * A weather app designed for commuters.
-* The app suggests suitable clothing to wear based on the current weather. 
+* The app suggests suitable clothing to wear based on the current weather.
 * The app allows users to search for locations and find their current location.
 * Users can change the background to a dark theme.
 
@@ -13,8 +13,8 @@ preact.js - Fast 3kB alternative to React with the same ES6 API.
 
 API's Used
 ------
-* Wunderground API - Retrieval of all weather data
-* Google Places API - Get coordinates from millions of locations 
+* Wunderground API - Retrieval of all weather data according to city/location or GPS coordinations
+* Google Places API - Get address details such as city and country from millions of locations 
 
 Set Up
 ======
