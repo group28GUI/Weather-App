@@ -1,21 +1,20 @@
-import { h, render, Component } from 'preact';
 
+import {h, render, Component} from 'preact';
+import style from '../style';
 import {DarkMode} from '../index';
-
-var month = ["January","February","March","April", "May","June", "July","August","September", "October", "November", "December"];
-
 import {timezone} from "../Page/MainPage";
 
-import style from '../style';
+// Array of MONTHS!
+var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-export class Clock extends Component
-{
-  constructor(props)
-  {
+export class Clock extends Component {
+  // Constructor with initial set states!
+  constructor(props) {
     super(props);
     this.getDate();
   }
 
+  // Time, Date & SET Format!
   getDate = () => {
     var str = new Date().toLocaleString("en-UK", {timeZone: timezone});
     var d = new Date(str);
@@ -27,29 +26,23 @@ export class Clock extends Component
     if (hour < 10) hour = "0" + hour;
     if (min < 10) min = "0" + min;
     this.setState({
-      first:day +" " + m +" "+ year,
+      first: day +" " + m +" "+ year,
       second: hour + ":"+min
     });
   }
 
-  componentDidMount() {
-       // update time every second
-       this.timer = setInterval(() => {
-          this.getDate()
-       }, 1000);
-   }
+  // SET timer to UPDATE every second after component gets mounted to the DOM!
+  componentDidMount() {this.timer = setInterval(() => {this.getDate()}, 1000);}
 
-  componentWillUnmount() {
-        // stop when not renderable
-        clearInterval(this.timer);
-    }
+  // STOP timer when component is not available to the DOM!
+  componentWillUnmount() {clearInterval(this.timer);}
 
-  render()
-  {
+  // OUTPUT Date & Time!
+  render() {
     return (
-      <div class={style.datandtime}>
+      <div class = {style.datandtime}>
         <div>{this.state.first}</div>
         <div>{this.state.second}</div>
       </div>);
-  }
-}
+    }
+} // END class Clock!
