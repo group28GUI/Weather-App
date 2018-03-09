@@ -44,7 +44,7 @@ npm run dev
 ```
 
 Authors
-------
+======
 Abdullahi Abokar, Maria Roxana Luca, Abubaker Osman, Umar Chaudhry, Mohammed Akhyar Uddin, Shiblu Miah
 
 Preview
