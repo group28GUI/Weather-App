@@ -58,6 +58,13 @@ export class SuggestionContainer extends Component {
          }
       }
 
+    // ADD constraint to NOT render entire component!
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.temp == nextProps.temp)
+           return false;
+        return true;
+    }
+
     // OUTPUT suggestions based on CURRENT conditions!
     render() {
     	var info = this.suggestion();
