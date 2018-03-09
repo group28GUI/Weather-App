@@ -7,6 +7,7 @@ export class WeeklyTable extends Component{
 
   returnEachRow = (data) =>
   {
+    //Thi will return the weekday name, the temp for that day, chances of rain and the icon for the conditon.
     return (
       <tr>
         <td><div>{data.weekday}</div> </td>
@@ -16,7 +17,7 @@ export class WeeklyTable extends Component{
       </tr>
     )
   }
-
+//Output Data to the weekly table  (day, temperture, chances of rain and Condition)
   render()
   {
       const content = this.props.daily.map((data) => this.returnEachRow(data));

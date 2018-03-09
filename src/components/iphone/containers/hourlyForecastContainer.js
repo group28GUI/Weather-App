@@ -9,7 +9,7 @@ export class HourlyForecastContainer extends Component{
   constructor(props){
 		super(props);
 	}
-
+// this returns the hour time, icon image and the temperture which will be displayed on the hourly box.
   returnEachRow = (data) => {
     return (
         <HourPicture temp = {data.temp} hour = {data.hour} icon = {data.icon}/>

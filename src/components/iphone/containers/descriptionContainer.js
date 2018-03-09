@@ -45,7 +45,7 @@ export class DescriptionContainer extends Component
 	}
 
 	render(){
-		
+
 		//load the information closed to predefined data
 		for (let i = 0;i<3;i++){
 			list[i].value = this.props.value[i];
