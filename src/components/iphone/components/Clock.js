@@ -1,4 +1,3 @@
-
 import {h, render, Component} from 'preact';
 import style from '../style';
 import {DarkMode} from '../index';
@@ -14,7 +13,7 @@ export class Clock extends Component {
     this.getDate();
   }
 
-  // Time, Date & SET Format!
+  // GET Time, Date & SET Format!
   getDate = () => {
     var str = new Date().toLocaleString("en-UK", {timeZone: timezone});
     var d = new Date(str);
