@@ -106,74 +106,87 @@
 	border-left:  1px solid @border_color_nav_dark;
 }
 
+//Border and Text color for navigation bar for light mode.
 .light .navbar > div{
 	border: 1px solid @border_color_nav;
 	color:@text_color;
 }
 
+//Border and Text color for navigation bar for Dark mode.
 .dark .navbar > div{
 	border: 1px solid @border_color_nav_dark;
 	color:@text_color_dark;
 }
 
+// Name of the city box properties for light mode.
 .light .city{
 	color: @text_color;
 	border:1px solid @border_color;
 	box-shadow: @box-shadow;
 }
 
+//Name of the city box properties for Dark mode.
 .dark .city{
 	color: @text_color_dark;
 	border:1px solid @border_color_dark;
 	box-shadow: @box-shadow_dark;
 }
 
+//properties including border, color and box affects for chances of rain , wind and cloud coverage BOX for light mode.
 .light .maininfo > div{
 	border: 1px solid @border_color;
 	color: @text_color;
 	box-shadow: @box-shadow;
 }
 
+//properties including border, color and box affects for chances of rain , wind and cloud coverage BOX for Dark mode.
 .dark .maininfo > div{
 	border: 1px solid @border_color_dark;
 	color: @text_color_dark;
 	box-shadow: @box-shadow_dark;
 }
 
+//Text color for weeklyTable in Dark mode.
 .dark .weeklyTable thead{
 	color: @text_color_dark;
 }
 
+//Text color for weeklyTable in Dark mode and light mode.
 .light .weeklyTable,
 .dark .weeklyTable{
 	color: @text_color;
 }
 
+//Background color for first child in first row and first column both in dark mode and light mode.
 .light .weeklyTable > tbody tr td:first-child div,
 .dark .weeklyTable > tbody tr td:first-child div{
 	background-color: #e1deea;
 }
 
+//Background color for second column  both in dark mode and light mode.
 .light .weeklyTable > tbody tr td:nth-child(2) div ,
 .dark .weeklyTable > tbody tr td:nth-child(2) div{
 	background-color: #c4bdd8;
 }
-
+//Background color for third column  both in dark mode and light mode.
 .light .weeklyTable > tbody tr td:nth-child(3) div,
 .dark .weeklyTable > tbody tr td:nth-child(3) div{
 	background-color: #a49cc2;
 }
 
+//Background color for fourth column  both in dark mode and light mode.
 .light .weeklyTable > tbody tr td:nth-child(4) div,
 .dark .weeklyTable > tbody tr td:nth-child(4) div{
 	background-color: #877cae;
 }
 
+//navigation background color.
 .light .navbar > div,
 .dark .navbar > div {
 	background-color:grey;
 }
 
+//Box shadow for weekly weather forecast.
 .light .weeklyTable > tbody tr td div,
 .dark .weeklyTable > tbody tr td div{
 	box-shadow: @box-shadow;
@@ -187,7 +200,7 @@
 	margin-top:35px;
 	margin-bottom: 40px;
 }
-
+//Positioning for row and columns inside the weeklyTable.
 .light .weeklyTable > tbody tr td:nth-child(-n+3) div,
 .dark .weeklyTable > tbody tr td:nth-child(-n+3) div{
 	margin: 1px;
@@ -195,6 +208,7 @@
   padding-top: 15px;
 }
 
+// sizing and Positioning of  text inside weekly table.
 .light .weeklyTable > thead td,
 .dark .weeklyTable > thead td{
 	font-size:1em;
@@ -204,7 +218,7 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-
+// weeklyTable temperature field properties.
 .light .weeklyTable > tbody tr td:nth-child(2) div:after,
 .dark .weeklyTable > tbody tr td:nth-child(2) div:after {
 	content: "°";
@@ -217,7 +231,7 @@
 	vertical-align: top;
 }
 
-
+//container properties for both modes.
 .light .container,
 .dark .container{
 	display: flex;
@@ -229,7 +243,7 @@
 	padding-top: 80px;
 	margin: 0 auto;
 }
-
+//properties of title in both modes.
 .light .title,
 .dark .title {
 	margin-top: -80px;
@@ -237,7 +251,7 @@
 	font-size: 2.8em;
 	text-align: center;
 }
-
+//Positioning of searchbar in both modes.
 .light .searchbar,
 .dark .searchbar{
 	margin-right: 3%;
@@ -246,7 +260,7 @@
 	margin-top: 2%;
 	font-size:1.0em;
 }
-
+//Positioning of searchbar for both modes.
 .light .searchbar input,
 .dark .searchbar input{
 	width:280px !important;
@@ -259,31 +273,31 @@
 	padding: 10px 1rem;
 	margin:auto;
 }
-
+//Positioning left  for  search bar.
 .light .searchbar> div,
 .dark .searchbar> div{
 	float:left;
 }
-
+//searchbar button properties.
 .light .searchbar>div button,
 .dark .searchbar>div button{
 	border-left:0px;
 	border-top-left-radius: 0px;
 	border-bottom-left-radius: 0px;
 }
-
+//hovering function in search bar.
 .light .searchbar>div:nth-last-child(1) button:hover,
 .dark .searchbar>div:nth-last-child(1) button:hover{
 	border-left:0px;
 }
-
+//searchbar button properties.
 .light .searchbar>div:nth-last-child(2) button,
 .dark .searchbar>div:nth-last-child(2) button{
 	border-left:0px;
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;
 }
-
+//display properties
 .light .display,
 .dark .display{
 	clear:both;
@@ -291,7 +305,7 @@
 	margin-left: 2.9%;
 	margin-right: 2.9%;
 }
-
+// Date and time Positioning.
 .light .datandtime,
 .dark .datandtime{
 	padding-right: 3%;
@@ -300,7 +314,7 @@
 	margin-top: 25px;
   float: left;
 }
-
+//Positioning of image.
 .light .display img,
 .dark .display img{
 	float:right;
@@ -312,7 +326,7 @@
 .dark .details  {
 	flex: 4;
 }
-
+//city box properties.
 .light .city,
 .dark .city {
 	flex: 1;
@@ -325,7 +339,7 @@
 	margin-left: auto;
 	margin-right: auto;
 }
-
+//Main info including chance of rain, wind and cloud coverage box properties.
 .light .maininfo,
 .dark .maininfo{
 	clear:both;
@@ -334,7 +348,7 @@
 	margin-left: auto;
 	margin-right: auto;
 }
-
+// chances of rain properties.
 .light .maininfo >  :nth-child(1),
 .dark .maininfo >  :nth-child(1){
  width:155px;
@@ -344,19 +358,20 @@
  border-right: 0px;
  padding-top: 15px;
 }
-
+// wind speed image Position.
 .light .maininfo > :nth-child(2) img,
 .dark .maininfo > :nth-child(2) img{
 	float:left;
 	margin-left: 25px;
 	width:40px;
 }
-
+// Floating wind speed box to the right.
 .light .maininfo > :nth-child(2) div:first-child,
 .dark .maininfo > :nth-child(2) div:first-child{
 	float:right;
 }
 
+// Positioning of wind speed.
 .light .maininfo > :nth-child(2),
 .dark .maininfo > :nth-child(2)
 {
@@ -365,18 +380,19 @@
 	height: 60px;
 	float:right;
 }
-
+//cloud coverage Positioning
 .light .maininfo> :nth-child(3) div :first-child,
 .dark .maininfo> :nth-child(3) div :first-child{
 	float: left;
 }
 
+// cloud coverage image Positioning.
 .light .maininfo> :nth-child(3) img,
 .dark .maininfo> :nth-child(3) img{
 	float: right;
 	padding-right: 20px;
 }
-
+//cloud coverage box properties.
 .light .maininfo> :nth-child(3),
 .dark .maininfo> :nth-child(3)
 {
@@ -387,24 +403,24 @@
 	border-top: 0px;
 	float:right;
 }
-
+//display the 3 box as block.
 .light .maininfo > div,
 .dark .maininfo > div{
 	display: block;
 }
-
+//current temperture display properties.
 .light .tempdisplay,
 .dark .tempdisplay{
 	float:right;
 	display: block;
 	width: 130px;
 }
-
+//current temperture display properties.
 .light .tempdisplay span span,
 .dark .tempdisplay span span{
 	font-weight: 500;
 }
-
+//current temperture display properties.
 .light .tempdisplay span span:before,
 .dark .tempdisplay span span:before{
 	content: "°";
@@ -416,7 +432,7 @@
 	padding-top: 10px;
 	vertical-align: top;
 }
-
+//temperture properties
 .light .tempdisplay span button:before,
 .dark .tempdisplay span button:before{
 	content: "°";
@@ -428,13 +444,13 @@
 	padding-top: 10px;
 	vertical-align: top;
 }
-
+//current temperture display properties.
 .light .tempdisplay span,
 .dark .tempdisplay span
 {
 	padding: 1px 0.25em;
 }
-
+// Temperture Text sizing and postitioning.
 .light .temperature,
 .dark .temperature{
 	flex: 2;
@@ -444,7 +460,7 @@
 	letter-spacing: -5.5px;
 	padding-left: 10px;
 }
-
+//hourly temp  content properties .
 .light .temperaturehourly,
 .dark  .temperaturehourly{
 	flex: 2;
@@ -453,7 +469,7 @@
 	font-weight: 300;
 	letter-spacing: -5px;
 }
-
+//hourlyforcast box positioning .
 .light .hourlyforcast,
 .dark .hourlyforcast{
 	margin-left: auto;
@@ -461,7 +477,7 @@
   width: fit-content;
 	clear:both;
 }
-
+// hourly forcast box properties.
 .light .hourlyforcastday,
 .dark .hourlyforcastday{
 	border-left: 0px;
@@ -472,7 +488,7 @@
 	padding-bottom: 7px;
 	padding-top: 7px;
 }
-
+// weekly box properties
 .light .weeklybox,
 .dark .weeklybox{
 		height:45px;
@@ -484,7 +500,7 @@
 		clear:both;
 		margin-bottom: 3%;
 	}
-
+//suggestionbox properties
 .light .suggestionbox,
 .dark .suggestionbox{
 		height:65px;
@@ -495,13 +511,13 @@
 		clear:both;
 		margin-bottom: 3%;
 	}
-
+//nav bar padding.
 .light .navbar,
 .dark .navbar{
 	padding-top:0%;
 
 }
-
+//nav bar
 .light .navbar > div,
 .dark .navbar > div{
 	width: 138px;
@@ -509,12 +525,13 @@
 	border-left:0px;
 	float:left;
 }
-
+//button img padding for nav bar.
 .light .navbar > div img,
 .dark .navbar > div img{
 	padding-top : 15px;
 }
 
+//degree properties.
 .light .filled:after,
 .dark .filled:after  {
 	content: "°";
@@ -525,7 +542,7 @@
 	padding-top: 10px;
 	vertical-align: top;
 }
-
+//degree properties for hourly forecast. 
 .light .filledhourly:after,
 .dark .filledhourly:after {
 	content: "°";
