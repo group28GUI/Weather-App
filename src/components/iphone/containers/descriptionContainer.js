@@ -4,6 +4,7 @@ import {PictureText} from '../components/PictureText'
 
 import style from '../style';
 
+//the predefined data for list of current date weather details
 var list =
 	[
 		{
@@ -37,15 +38,20 @@ export class DescriptionContainer extends Component
 
 	}
 
+	//split the data according to information
 	returnEachRow = (data) =>
 	{
 		return <PictureText data = {data}/>;
 	}
-	//? something short ?
+
 	render(){
+		
+		//load the information closed to predefined data
 		for (let i = 0;i<3;i++){
 			list[i].value = this.props.value[i];
 		}
+
+		//split the information according to the proprieties about current weather
 		const content = list.map((data) => this.returnEachRow(data));
 		return (
 			<div class={style.maininfo}>

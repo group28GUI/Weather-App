@@ -52,6 +52,12 @@ export class SuggestionContainer extends Component{
 		}
 	}
 
+  shouldComponentUpdate(nextProps,nextState){
+    if (this.props.temp == nextProps.temp)
+      return false;
+    return true;
+  }
+
 	render() {
 		var info = this.suggestion();
 		return <div class={style.suggestionbox}> {info} < /div>

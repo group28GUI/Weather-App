@@ -14,16 +14,21 @@ const loop_src = "../../assets/backgrounds/loop.png";
 const gps_src = "../../assets/backgrounds/gps.png";
 
 var getCityAddress = exports.getCityAddress = function (result) {
+// retrive data from geocodeByAddress service worker function
 	return new Promise((resolve, reject) => {
     try {
+			// get information from google api
 			let city = result[0].long_name;
 			const size = result.length;
+			// get the city name from google api
 			let country = result[size-1].short_name;
 			if (country == 'US' || country.length > 2)
 				country = result[size-2].short_name;
+			// get the country shortcut from google api
 			const address =
 				{country: country,
         city: city};
+			// combine city and country in order to call the wunderground api
 			resolve(address)
     } catch (e) {
       reject(e)
@@ -47,6 +52,7 @@ export class SearchContainer extends Component
 	}
 
 	handleFormSubmit = (event) => {
+	// if user selects a location
     event.preventDefault()
 		let funct = geocodeByAddress(this.state.address)
 		.then(results => getCityAddress(results[0].address_components))// getLatLng(results[0]))
@@ -55,23 +61,29 @@ export class SearchContainer extends Component
 	}
 
 	sendLocation = (address) =>{
+		//communicates to the parent, main page, which contains the api functions
 		this.props.changeLocation(address.country+"/"+ address.city);
 	}
 
 	handleGrade = (event) =>{
+		//handle the changes of the grade
 		event.preventDefault();
 		this.props.changeGrade(event.toElement.innerHTML);
 	}
 
 	emptyAddress = () =>{
+		// consider empty address to carry further requests in parent, main page, to the wunderground api
 		this.onChange("");
 	}
 
+	// return temperature details into html format
 	getTemperatureFormatted(){
+		//get the temperature style for temperature box
 		const tempStyles = this.props.temp ? `${style.temperature} ${style.filled}` : style.temperature;
 		let part = "";
 
 		if (preference == 'F'){
+		//according to the user choise
 			part = (<div>
 								<Button type="button" value="C" clickFunction={this.handleGrade}>C</Button>
 								<span style={{paddingRight: '15px'}}>/</span>

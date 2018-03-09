@@ -18,6 +18,7 @@ export class HourlyForecastContainer extends Component{
 
   render()
   {
+     // split the data on each day
      const content = this.props.hourly.map((data) => this.returnEachRow(data));
      return(
       <div class={style.hourlyforcast}>

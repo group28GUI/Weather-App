@@ -91,7 +91,7 @@ export class MainPage extends Component{
   	fetchWeatherData = (search) => {
       this.setState({search: search.substring(0,2), display:false});
       // API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-  		var url = "http://api.wunderground.com/api/7e6a6831e455da38/conditions/hourly/q/"+search+".json";
+  		var url = "http://api.wunderground.com/api/d67dadbd88cb73a6/conditions/hourly/q/"+search+".json";
       $.ajax({
   			url: url,
   			dataType: "jsonp",
@@ -103,13 +103,14 @@ export class MainPage extends Component{
   	}
 
     parseResponse = (parsed_json) => {
-  		//console.log(parsed_json);
+  		//if the current request is not getting the data correctly
       if (parsed_json['current_observation']== undefined)
       {
         let code = initialiseRequest(parsed_json,this.state.search);
         this.fetchWeatherData('zmw:' + code);
         return;
       }
+      //otherwise fetch all required data for the current date
   		var location = parsed_json['current_observation']['display_location']['city'];
   		var temp_c = preference=='C' ? parsed_json['current_observation']['temp_c'] : parsed_json['current_observation']['temp_f'];;
   		var conditions = parsed_json['current_observation']['weather'];
@@ -119,6 +120,7 @@ export class MainPage extends Component{
   		var icon_now = parsed_json['current_observation']['icon_url'];
       var country = parsed_json['current_observation']['display_location']['country'];
   		var day = [],i;
+      //fetch the data for next 5 days
   		for (i = 0;i<5;i++)  {
         var temperature = preference=='C' ? parsed_json['hourly_forecast'][i]['temp']['metric']
           : parsed_json['hourly_forecast'][i]['temp']['english'];

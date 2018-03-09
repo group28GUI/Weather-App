@@ -27,7 +27,7 @@ export class WeeklyPage extends Component{
   fetchWeatherData = (search) => {
     // API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
     this.setState({search: search.substring(0,2), display:false});
-    var url = "http://api.wunderground.com/api/7e6a6831e455da38/forecast10day/q/"+search+".json";
+    var url = "http://api.wunderground.com/api/d67dadbd88cb73a6/forecast10day/q/"+search+".json";
     $.ajax({
       url: url,
       dataType: "jsonp",
