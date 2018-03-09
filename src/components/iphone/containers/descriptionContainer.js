@@ -1,62 +1,55 @@
-import { h, render, Component } from 'preact';
-
+import {h, render, Component} from 'preact';
 import {PictureText} from '../components/PictureText'
-
 import style from '../style';
 
-//the predefined data for list of current date weather details
-var list =
-	[
-		{
-			image:"https://icons.wxug.com/i/c/k/rain.gif",
-			text:"Chances of Rain",
-			variable:"rain",
-			value:"",
-			measure:"%"
-		},
-		{
-			image:"../../assets/backgrounds/wind.png",
-			text:"Wind Speed",
-			variable:"speed",
-			value:"",
-			measure:'mph'
-		},
-		{
-			image:"https://icons.wxug.com/i/c/k/cloudy.gif",
-			text:"Cloud Coverage",
-			variable:"cloud_c",
-			value:"",
-			measure:'%'
-		}
-	];
-
-export class DescriptionContainer extends Component
-{
-  // a constructor with initial set states
-	constructor(props){
-		super(props);
-
-	}
-
-	//split the data according to information
-	returnEachRow = (data) =>
+// Array of PREDIFINED weather DATA!
+var list = [
 	{
-		return <PictureText data = {data}/>;
+	// Chance of Rain!
+	image: "https://icons.wxug.com/i/c/k/rain.gif",
+	text: "Chances of Rain",
+	variable: "rain",
+	value: "",
+	measure: "%"
+	},
+	{
+	// Wind Speed!
+	image: "../../assets/backgrounds/wind.png",
+	text: "Wind Speed",
+	variable: "speed",
+	value: "",
+	measure: 'mph'
+	},
+	{
+	// Cloud Coverage!
+	image: "https://icons.wxug.com/i/c/k/cloudy.gif",
+	text: "Cloud Coverage",
+	variable: "cloud_c",
+	value: "",
+	measure: '%'
 	}
+];
 
-	render(){
+export class DescriptionContainer extends Component {
+	 // Constructor with initial set states!
+	 constructor(props) {
+             super(props);
+	 }
 
-		//load the information closed to predefined data
-		for (let i = 0;i<3;i++){
-			list[i].value = this.props.value[i];
-		}
+	 // SPLIT data according to information!
+	 returnEachRow = (data) => {return <PictureText data = {data}/>;}
 
-		//split the information according to the proprieties about current weather
-		const content = list.map((data) => this.returnEachRow(data));
-		return (
-			<div class={style.maininfo}>
-				{content}
-			</div>
-		);
-	}
-}
+	 render() {
+	      // LOAD information close to predefined data!
+	      for (let i = 0; i<3; i++) {
+		   list[i].value = this.props.value[i];
+	      }
+
+	      // SPLIT information according to the properties about current weather!
+	      const content = list.map((data) => this.returnEachRow(data));
+
+	      // OUTPUT main weather information!
+	      return (
+		   <div class = {style.maininfo}>{content}</div>
+	      );}
+} // END class descriptionContainer!
