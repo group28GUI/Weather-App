@@ -1,4 +1,4 @@
-<img src = "Logo.jpg" width = "200">
+<img src = "Logo.jpg" width = "300">
 
 # Smart Weather
 * A weather app designed for commuters.
