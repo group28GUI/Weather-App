@@ -1,4 +1,4 @@
-<img src = "Logo.jpg" width = "300">
+<img src = "Logo.jpg" width = "280">
 
 # Smart Weather
 * A weather app designed for commuters.
@@ -11,7 +11,7 @@ Overview
 
 Framework Used
 ------
-preact.js - Fast 3kB alternative to React with the same ES6 API.
+preact.js - Fast 3KB alternative to React with the same ES6 API.
 
 API's Used
 ------
